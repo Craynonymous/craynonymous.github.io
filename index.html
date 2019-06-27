@@ -1,0 +1,465 @@
+<!--
+
+ __ __    ___  __ __  __  __ 
+|  |  |  /  _]|  |  ||  ||  |
+|  |  | /  [_ |  |  ||  ||  |
+|  _  ||    _]|  ~  ||__||__|
+|  |  ||   [_ |___, | __  __ 
+|  |  ||     ||     ||  ||  |
+|__|__||_____||____/ |__||__|
+                             
+The models embedded in this website are heavily decimated to save space, and I don't reccomend using them for anything.
+If you need a version of one of the models on the site that isn't split into pieces for 3D printing, shoot me an email!
+    
+-->
+<!DOCTYPE html>
+<html lang="en">
+<style id="letterDelay">
+    div #letter:nth-child(1) {animation-delay: 0.5s;}
+    div #letter:nth-child(2) {animation-delay: 0.6s;}
+    div #letter:nth-child(3) {animation-delay: 0.7s;}
+    div #letter:nth-child(4) {animation-delay: 0.8s;}
+    div #letter:nth-child(5) {animation-delay: 0.9s;}
+    div #letter:nth-child(6) {animation-delay: 1s;}
+    div #letter:nth-child(7) {animation-delay: 1.1s;}
+    div #letter:nth-child(8) {animation-delay: 1.2s;}
+    div #letter:nth-child(9) {animation-delay: 1.3s;}
+    div #letter:nth-child(10) {animation-delay: 1.4s;}
+    div #letter:nth-child(11) {animation-delay: 1.5s;}
+</style>
+<style>
+    
+    body {
+        
+        background-color: white;
+        
+    }
+
+    #block1 {
+        display: grid;
+        grid-template-rows: 14vmin 8vmin;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        background-color: lightgray;
+        top: 0px;
+        bottom: 0px;
+        border-top: 12px solid grey;
+        border-right: 12px solid rgb(155, 155, 155);
+        z-index:-2;
+    }
+
+    #letter-container{
+        text-align: center;
+        left: 0px;
+    }
+
+    #letter {
+        display: inline-block;
+        word-wrap:break-word;
+        font-family: trench;
+        font-size: 14vmin;
+        font-weight: bold;
+        animation: textpopup .5s ease-out;
+        animation-fill-mode: forwards;
+        position: relative;
+        color: lightgray;
+        outline-width: 0px;
+        transition: all 0.25s ease-out;
+    }
+
+    .spacer {
+        content: "  ";
+        width: 5%;
+    }
+
+    #letter.active{
+        color: white;
+        top: -12px;
+        left: 12px;
+        text-shadow: -1px 1px 0px grey, -2px 2px 0px grey, -3px 3px 0px grey, -4px 4px 0px grey, -5px 5px 0px grey, -6px 6px 0px grey,
+            -7px 7px 0px grey, -8px 8px 0px grey, -9px 9px 0px grey, -10px 10px 0px grey, -11px 11px 0px grey, -12px 12px 0px grey;
+        animation: textpushdown .5s ease-out;
+        animation-fill-mode: forwards;
+        z-index:-1;
+    }
+
+    @keyframes textpopup {
+        from {
+            color: lightgray;
+            top: 0px;
+            left: 0px;
+            text-shadow: 0px 0px 0px lightgray;
+        }
+
+        to {
+            color: white;
+            top: -12px;
+            left: 12px;
+            text-shadow: -1px 1px 0px grey, -2px 2px 0px grey, -3px 3px 0px grey, -4px 4px 0px grey, -5px 5px 0px grey, -6px 6px 0px grey,
+                -7px 7px 0px grey, -8px 8px 0px grey, -9px 9px 0px grey, -10px 10px 0px grey, -11px 11px 0px grey, -12px 12px 0px grey;
+        }
+    }
+
+    @keyframes textpushdown {
+        from {
+            color: white;
+            top: -12px;
+            left: 12px;
+            text-shadow: -1px 1px 0px grey, -2px 2px 0px grey, -3px 3px 0px grey, -4px 4px 0px grey, -5px 5px 0px grey, -6px 6px 0px grey,
+                -7px 7px 0px grey, -8px 8px 0px grey, -9px 9px 0px grey, -10px 10px 0px grey, -11px 11px 0px grey, -12px 12px 0px grey;
+        }
+
+        to {
+            color: lightgray;
+            top: 0px;
+            left: 0px;
+            text-shadow: 0px 0px 0px lightgray;
+        }
+    }
+
+    @font-face {
+        font-family: trench;
+        src: url("misc/trench100free.otf") format("opentype");
+    }
+
+    h1 {
+        font-family: trench;
+    }
+
+    #buttons {
+        display: flex;
+        justify-content: space-between;
+        background-color: white;
+        position: relative;
+        
+        left: 12px;
+        
+        
+       
+        box-shadow: -12px 0px 0px white,-1px 1px 0px grey, -2px 2px 0px grey, -3px 3px 0px grey, -4px 4px 0px grey, -5px 5px 0px grey, -6px 6px 0px grey,
+            -7px 7px 0px grey, -8px 8px 0px grey, -9px 9px 0px grey, -10px 10px 0px grey, -11px 11px 0px grey, -12px 12px 0px grey;
+    }
+    
+
+    button {
+        font-family: trench;
+        font-size: 5vmin;
+        display: inline-block;
+        margin-left: 3vw;
+        margin-right: 4vw;
+        background-color: white;
+        border: 0px;
+        border-color: black;
+        top: 0px;
+        left: 0px;
+        box-shadow: 0px 0px 0px white;
+        font-weight: 100;
+        color: black;
+        text-shadow: black;
+        transition: all 0.25s ease-out;
+        position: relative;
+        height: 8vmin;
+        outline: none;
+        z-index: 6;
+    }
+
+    button:hover {
+        top: -12px;
+        left: 12px;
+        box-shadow: -1px 1px 0px grey, -2px 2px 0px grey, -3px 3px 0px grey, -4px 4px 0px grey, -5px 5px 0px grey, -6px 6px 0px grey,
+                -7px 7px 0px grey, -8px 8px 0px grey, -9px 9px 0px grey, -10px 10px 0px grey, -11px 11px 0px grey, -12px 12px 0px grey, 0px 0px 10px lightgray;
+        cursor: pointer;
+    }
+    button.active {
+        top: -12px;
+        left: 12px;
+        box-shadow: -1px 1px 0px grey, -2px 2px 0px grey, -3px 3px 0px grey, -4px 4px 0px grey, -5px 5px 0px grey, -6px 6px 0px grey,
+                -7px 7px 0px grey, -8px 8px 0px grey, -9px 9px 0px grey, -10px 10px 0px grey, -11px 11px 0px grey, -12px 12px 0px grey, 0px 0px 10px lightgray;
+        cursor: pointer;
+    }
+    
+    #surrounding{
+        overflow:hidden;
+        position: relative;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }
+    .slide {
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        top:0%;
+        left:200%;
+        right: 0px;
+        transition: all 1s ease-in-out;
+    }
+
+    #slide1{
+        
+        height: auto;
+    }
+
+    #modelTitle {
+        position: absolute;
+        top:0px;
+        
+        left: 50%;
+        font-family: trench;
+        font-size: 5vmin;
+        word-wrap: break-word;
+        font-weight: bolder;
+        display: inline-block;
+        
+    }
+
+    #modelDesc {
+        
+        position: absolute;
+        top:10vmin;
+        left: 40vw;
+        right: 10%;
+        font-family: trench;
+        font-size: 5vmin;
+        word-wrap: break-word;
+        display: inline-block;
+    }
+
+    #desc{
+        position: absolute;
+        top:50px;
+        left: 5%;
+        right: 10%;
+        font-family: trench;
+        font-size: 5vmin;
+    }
+    #logo{
+        position: relative;
+        top:4vw;
+        left: -5vw;
+         
+        display: inline-block;
+        width: 30vw;
+        filter:drop-shadow(-1px 1px 0px grey)drop-shadow(-2px 2px 0px grey)drop-shadow(-3px 3px 0px grey)drop-shadow(-4px 4px 0px grey)drop-shadow(-5px 5px 0px grey);
+        transition: all 0.1s ease-out; 
+    }
+    #logo:hover{
+        top: 4.3vw;
+        left: -5.3vw;
+        display: inline-block;
+        filter:drop-shadow(-1px 1px 0px grey)drop-shadow(-2px 2px 0px grey)drop-shadow(-3px 3px 0px grey)drop-shadow(-2px 2px 0px grey)drop-shadow(-3px 3px 0px grey);
+    }
+
+    #model-container{
+        position: absolute;
+        height: auto;
+        top: 5vmin;
+        width: auto;
+    }
+
+    #modelLink{
+        font-weight: bolder;
+        display: inline-block;
+        
+        margin-top: 6%;
+        margin-right: 50%;
+        left: 600px;
+        font-family: trench;
+        top: 6vmin;
+        text-decoration-line: none;
+    }
+    #slide4{
+        text-align: center;
+    }
+
+    @media only screen and (orientation: portrait) {
+        #modelTitle {
+            left: 35%;
+        }
+        #model-container{
+            top:35vmin;
+            left:25vmin;
+        }
+        #modelDesc {
+            left: 1vmin;
+        }
+}
+</style>
+
+<head>
+    <link rel="icon" href = "favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body onresize="resizeModel()">
+    <div id="block1">
+        <div id="letter-container">
+            <div id="letter" onmouseover="letterSink(this)" style="z-index: 5">L</div>
+            <div id="letter" onmouseover="letterSink(this)" style="z-index: 4">A</div>
+            <div id="letter" onmouseover="letterSink(this)" style="z-index: 3">Y</div>
+            <div id="letter" onmouseover="letterSink(this)" style="z-index: 2">E</div>
+            <div id="letter" onmouseover="letterSink(this)" style="z-index: 1">R</div>
+            <div class="spacer" id="letter"> </div>
+            <div id="letter" onmouseover="letterSink(this)" style="z-index: 5">L</div>
+            <div id="letter" onmouseover="letterSink(this)" style="z-index: 4">I</div>
+            <div id="letter" onmouseover="letterSink(this)" style="z-index: 3">N</div>
+            <div id="letter" onmouseover="letterSink(this)" style="z-index: 2">E</div>
+            <div id="letter" onmouseover="letterSink(this)" style="z-index: 1">S</div>
+        </div>
+    
+        <div id="buttons">
+            <div></div>
+            <button id="button1" onclick="changeActive(1)"style = "margin-left: 0%;">projects</button>
+            <button id="button2" onclick="changeActive(2)">about</button>
+            <button id="button3" onclick="changeActive(3)">links</button>
+            <button id="button4" onclick="changeActive(4)">contact</button>
+        </div>
+        <div id="surrounding" class="w3-container">
+            <div class="slide" id="slide1">
+                <div id="model-container"></div>
+                <p id="modelTitle">HORNET
+                    <p id="modelDesc">Character from the game Hollow Knight. Model is made in Blender and fully 3D
+                        printable, files and assembly video are avilable below. <br>
+                        <a id="modelLink" href="https://www.youtube.com/watch?v=DDRNva_G8xk">WATCH VIDEO</a><a
+                            id="modelLink" href="https://www.myminifactory.com/object/3d-print-93528">DOWNLOAD FILES</a>
+                    </p>
+                </p>
+            </div>
+            <div class="slide" id="slide2">
+                <p id="desc">Hey there! I'm Nathan, and this is the website for my YouTube channel, Layer Lines.<br><br>I mainly work with Blender creating models from movies and video games, most of which end up 3D printed. You can find all my videos on my channel, or head over to my profile on MyMiniFactory to download and print my previous projects.<br><br>
+                    Thanks for stopping by!
+                </p>
+            </div>
+            <div class="slide" id="slide3" style="text-align: center;">
+                <a href="https://www.myminifactory.com/users/layerlines"><img src="img/mmf_logo.png" id="logo"></a>
+                
+                <a href="https://www.youtube.com/channel/UCB2hedx09-O5u0tg-WwUTdw"><img src="img/youtube_logo.png" id="logo" style="margin-left:20vw;"></a>
+            </div>
+            <div class="slide" id="slide4">
+                <p id="desc">You can contact me at <br><a href="mailto:LayerLinesYT@gmail.com" style="text-decoration-line: none;">LayerLinesYT@gmail.com</a><br><br>or message me on any other platform I use: <br><a href="">Twitter</a></p>
+            </div> 
+        </div>
+    </div>
+    
+    <script src="js/three.js"></script>
+    <script src="js/GLTFLoader.js"></script>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/jquery.textfill.min.js"></script>
+    <script>
+        jj = navigator.app
+        var userletters = false;
+        window.onload=function(){setTimeout(function(){var element = document.getElementById("letterDelay"); element.parentNode.removeChild(element);userletters=true;},2000)};
+        function letterSink(element){
+            if(userletters == true){
+                element.className = "active";
+                setTimeout(function(){element.className = "inactive"},500);
+            }
+        }
+        var activeSlide = 0;
+        function changeActive(num){
+            if(activeSlide!=0)
+                document.getElementById("slide"+activeSlide).style.left = "200%";
+            document.getElementById("slide"+num).style.left = "5%";
+            activeSlide = num;
+            for(i=1;i<=4;i++)
+                if(i==activeSlide)
+                    document.getElementById("button"+activeSlide).className = "active";
+                else
+                    document.getElementById("button"+i).className = "inactive";
+        }
+        var modelViewX = 600;
+        var modelViewY = 650;
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(30, modelViewX/modelViewY, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        var loader = new THREE.GLTFLoader();
+        resizeModel();
+        document.getElementById("model-container").appendChild(renderer.domElement);
+        var hornetModel;
+        var light = new THREE.PointLight(0xFFFFFF, 0.6, 500);
+        light.position.x = 10;
+        scene.add(light);
+        var light = new THREE.PointLight(0xFFFFFF, 0.6, 500);
+        light.position.x = -10;
+        scene.add(light);
+        loader.load('misc/hornet_model.glb',
+        function(model){
+            hornetModel = model.scene.children[0];
+            console.log(model.scene.children[0]);
+            console.log(hornetModel);
+            scene.add(hornetModel);console.log("loaded");
+            hornetModel.position.z = -61;
+            hornetModel.position.y = -2;
+            hornetModel.material = new THREE.MeshPhysicalMaterial({clearCoat:1, roughness: 0.7,metalness:0.83,color: 0x777777 , morphTargets: true});//base
+            hornetModel.children[0].material = new THREE.MeshPhysicalMaterial({ roughness: 0.68,metalness:1,color: 0x1e1e1e , morphTargets: true });//body
+            hornetModel.children[1].material = new THREE.MeshPhysicalMaterial({ roughness: 1,metalness:0,color: 0x840b0b , morphTargets: true });//cloak
+            hornetModel.children[2].material = new THREE.MeshPhysicalMaterial({ roughness: 1,metalness:0,color: 0xffffff , morphTargets: true });//head
+            hornetModel.children[3].material = new THREE.MeshPhysicalMaterial({ roughness: 0.68,metalness:1,color: 0x1e1e1e , morphTargets: true });//eyes
+            hornetModel.children[4].material = new THREE.MeshPhysicalMaterial({ roughness: 0.44,metalness:0.83,color: 0xa0a0a0 , morphTargets: true});//nail
+            }, undefined, function (error) { console.log("yeah" + error); });
+
+            //mouse drag script↓
+
+            var drag = false;
+            var frameCountdown = 0; //defines number of frames until model view resets
+            var lastOffset = {x:0,y:0};
+
+            renderer.domElement.addEventListener('mousedown',function(e){drag = true; frameCountdown=120;document.getElementById("modelDesc").style.zIndex= -1;document.getElementById("model-container").style.outline = "1px dotted black";});
+            
+            renderer.domElement.addEventListener('mousemove',function(e){
+                var rotFactor = {x: e.offsetX-lastOffset.x,     y: e.offsetY-lastOffset.y};
+                if(drag){
+                    var rot = new THREE.Quaternion().setFromEuler(new THREE.Euler(rotFactor.y*(Math.PI/180),rotFactor.x*(Math.PI/180),0,'XYZ'))
+                    hornetModel.quaternion.multiplyQuaternions(rot, hornetModel.quaternion);
+                }
+                lastOffset = {x: e.offsetX,     y: e.offsetY};
+            });
+
+            document.addEventListener('mouseup',function(){drag=false;document.getElementById("modelDesc").style.zIndex= 0;document.getElementById("model-container").style.outline = "none";})
+            function modelUpdate(){
+                if(drag==false){
+                    if(frameCountdown>0)
+                        frameCountdown--;
+                    else{
+                        hornetModel.rotation.y += 0.01;
+                        if(hornetModel.rotation.x != 0)
+                            hornetModel.rotation.x = (hornetModel.rotation.x - hornetModel.rotation.x % 0.01)-hornetModel.rotation.x/50;
+                        if(hornetModel.rotation.z != 0)
+                            hornetModel.rotation.z = (hornetModel.rotation.z - hornetModel.rotation.z % 0.01)-hornetModel.rotation.z/50;
+                    }
+                }
+            }
+            
+
+            function render() {
+                modelUpdate();
+                renderer.render(scene, camera);
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                render();
+
+            }
+            animate();
+
+            function resizeModel(){
+                if(window.innerWidth<window.innerHeight){
+                    renderer.setSize(window.innerWidth/1.5,window.innerWidth*0.72);
+                }
+                else{
+                    renderer.setSize((window.innerHeight*0.9)/1.5,window.innerHeight/1.5);
+                }
+                
+            }
+            
+        </script>
+</body>
+
+</html>

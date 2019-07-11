@@ -1,465 +1,480 @@
-<!--
-
- __ __    ___  __ __  __  __ 
-|  |  |  /  _]|  |  ||  ||  |
-|  |  | /  [_ |  |  ||  ||  |
-|  _  ||    _]|  ~  ||__||__|
-|  |  ||   [_ |___, | __  __ 
-|  |  ||     ||     ||  ||  |
-|__|__||_____||____/ |__||__|
-                             
-The models embedded in this website are heavily decimated to save space, and I don't reccomend using them for anything.
-If you need a version of one of the models on the site that isn't split into pieces for 3D printing, shoot me an email!
-    
--->
 <!DOCTYPE html>
 <html lang="en">
-<style id="letterDelay">
-    div #letter:nth-child(1) {animation-delay: 0.5s;}
-    div #letter:nth-child(2) {animation-delay: 0.6s;}
-    div #letter:nth-child(3) {animation-delay: 0.7s;}
-    div #letter:nth-child(4) {animation-delay: 0.8s;}
-    div #letter:nth-child(5) {animation-delay: 0.9s;}
-    div #letter:nth-child(6) {animation-delay: 1s;}
-    div #letter:nth-child(7) {animation-delay: 1.1s;}
-    div #letter:nth-child(8) {animation-delay: 1.2s;}
-    div #letter:nth-child(9) {animation-delay: 1.3s;}
-    div #letter:nth-child(10) {animation-delay: 1.4s;}
-    div #letter:nth-child(11) {animation-delay: 1.5s;}
-</style>
-<style>
-    
-    body {
-        
-        background-color: white;
-        
-    }
-
-    #block1 {
-        display: grid;
-        grid-template-rows: 14vmin 8vmin;
-        position: absolute;
-        left: 0px;
-        right: 0px;
-        background-color: lightgray;
-        top: 0px;
-        bottom: 0px;
-        border-top: 12px solid grey;
-        border-right: 12px solid rgb(155, 155, 155);
-        z-index:-2;
-    }
-
-    #letter-container{
-        text-align: center;
-        left: 0px;
-    }
-
-    #letter {
-        display: inline-block;
-        word-wrap:break-word;
-        font-family: trench;
-        font-size: 14vmin;
-        font-weight: bold;
-        animation: textpopup .5s ease-out;
-        animation-fill-mode: forwards;
-        position: relative;
-        color: lightgray;
-        outline-width: 0px;
-        transition: all 0.25s ease-out;
-    }
-
-    .spacer {
-        content: "  ";
-        width: 5%;
-    }
-
-    #letter.active{
-        color: white;
-        top: -12px;
-        left: 12px;
-        text-shadow: -1px 1px 0px grey, -2px 2px 0px grey, -3px 3px 0px grey, -4px 4px 0px grey, -5px 5px 0px grey, -6px 6px 0px grey,
-            -7px 7px 0px grey, -8px 8px 0px grey, -9px 9px 0px grey, -10px 10px 0px grey, -11px 11px 0px grey, -12px 12px 0px grey;
-        animation: textpushdown .5s ease-out;
-        animation-fill-mode: forwards;
-        z-index:-1;
-    }
-
-    @keyframes textpopup {
-        from {
-            color: lightgray;
-            top: 0px;
-            left: 0px;
-            text-shadow: 0px 0px 0px lightgray;
-        }
-
-        to {
-            color: white;
-            top: -12px;
-            left: 12px;
-            text-shadow: -1px 1px 0px grey, -2px 2px 0px grey, -3px 3px 0px grey, -4px 4px 0px grey, -5px 5px 0px grey, -6px 6px 0px grey,
-                -7px 7px 0px grey, -8px 8px 0px grey, -9px 9px 0px grey, -10px 10px 0px grey, -11px 11px 0px grey, -12px 12px 0px grey;
-        }
-    }
-
-    @keyframes textpushdown {
-        from {
-            color: white;
-            top: -12px;
-            left: 12px;
-            text-shadow: -1px 1px 0px grey, -2px 2px 0px grey, -3px 3px 0px grey, -4px 4px 0px grey, -5px 5px 0px grey, -6px 6px 0px grey,
-                -7px 7px 0px grey, -8px 8px 0px grey, -9px 9px 0px grey, -10px 10px 0px grey, -11px 11px 0px grey, -12px 12px 0px grey;
-        }
-
-        to {
-            color: lightgray;
-            top: 0px;
-            left: 0px;
-            text-shadow: 0px 0px 0px lightgray;
-        }
-    }
-
-    @font-face {
-        font-family: trench;
-        src: url("misc/trench100free.otf") format("opentype");
-    }
-
-    h1 {
-        font-family: trench;
-    }
-
-    #buttons {
-        display: flex;
-        justify-content: space-between;
-        background-color: white;
-        position: relative;
-        
-        left: 12px;
-        
-        
-       
-        box-shadow: -12px 0px 0px white,-1px 1px 0px grey, -2px 2px 0px grey, -3px 3px 0px grey, -4px 4px 0px grey, -5px 5px 0px grey, -6px 6px 0px grey,
-            -7px 7px 0px grey, -8px 8px 0px grey, -9px 9px 0px grey, -10px 10px 0px grey, -11px 11px 0px grey, -12px 12px 0px grey;
-    }
-    
-
-    button {
-        font-family: trench;
-        font-size: 5vmin;
-        display: inline-block;
-        margin-left: 3vw;
-        margin-right: 4vw;
-        background-color: white;
-        border: 0px;
-        border-color: black;
-        top: 0px;
-        left: 0px;
-        box-shadow: 0px 0px 0px white;
-        font-weight: 100;
-        color: black;
-        text-shadow: black;
-        transition: all 0.25s ease-out;
-        position: relative;
-        height: 8vmin;
-        outline: none;
-        z-index: 6;
-    }
-
-    button:hover {
-        top: -12px;
-        left: 12px;
-        box-shadow: -1px 1px 0px grey, -2px 2px 0px grey, -3px 3px 0px grey, -4px 4px 0px grey, -5px 5px 0px grey, -6px 6px 0px grey,
-                -7px 7px 0px grey, -8px 8px 0px grey, -9px 9px 0px grey, -10px 10px 0px grey, -11px 11px 0px grey, -12px 12px 0px grey, 0px 0px 10px lightgray;
-        cursor: pointer;
-    }
-    button.active {
-        top: -12px;
-        left: 12px;
-        box-shadow: -1px 1px 0px grey, -2px 2px 0px grey, -3px 3px 0px grey, -4px 4px 0px grey, -5px 5px 0px grey, -6px 6px 0px grey,
-                -7px 7px 0px grey, -8px 8px 0px grey, -9px 9px 0px grey, -10px 10px 0px grey, -11px 11px 0px grey, -12px 12px 0px grey, 0px 0px 10px lightgray;
-        cursor: pointer;
-    }
-    
-    #surrounding{
-        overflow:hidden;
-        position: relative;
-        top: 0px;
-        bottom: 0px;
-        left: 0px;
-        right: 0px;
-    }
-    .slide {
-        position: absolute;
-        width: 100%;
-        height: 10%;
-        top:0%;
-        left:200%;
-        right: 0px;
-        transition: all 1s ease-in-out;
-    }
-
-    #slide1{
-        
-        height: auto;
-    }
-
-    #modelTitle {
-        position: absolute;
-        top:0px;
-        
-        left: 50%;
-        font-family: trench;
-        font-size: 5vmin;
-        word-wrap: break-word;
-        font-weight: bolder;
-        display: inline-block;
-        
-    }
-
-    #modelDesc {
-        
-        position: absolute;
-        top:10vmin;
-        left: 40vw;
-        right: 10%;
-        font-family: trench;
-        font-size: 5vmin;
-        word-wrap: break-word;
-        display: inline-block;
-    }
-
-    #desc{
-        position: absolute;
-        top:50px;
-        left: 5%;
-        right: 10%;
-        font-family: trench;
-        font-size: 5vmin;
-    }
-    #logo{
-        position: relative;
-        top:4vw;
-        left: -5vw;
-         
-        display: inline-block;
-        width: 30vw;
-        filter:drop-shadow(-1px 1px 0px grey)drop-shadow(-2px 2px 0px grey)drop-shadow(-3px 3px 0px grey)drop-shadow(-4px 4px 0px grey)drop-shadow(-5px 5px 0px grey);
-        transition: all 0.1s ease-out; 
-    }
-    #logo:hover{
-        top: 4.3vw;
-        left: -5.3vw;
-        display: inline-block;
-        filter:drop-shadow(-1px 1px 0px grey)drop-shadow(-2px 2px 0px grey)drop-shadow(-3px 3px 0px grey)drop-shadow(-2px 2px 0px grey)drop-shadow(-3px 3px 0px grey);
-    }
-
-    #model-container{
-        position: absolute;
-        height: auto;
-        top: 5vmin;
-        width: auto;
-    }
-
-    #modelLink{
-        font-weight: bolder;
-        display: inline-block;
-        
-        margin-top: 6%;
-        margin-right: 50%;
-        left: 600px;
-        font-family: trench;
-        top: 6vmin;
-        text-decoration-line: none;
-    }
-    #slide4{
-        text-align: center;
-    }
-
-    @media only screen and (orientation: portrait) {
-        #modelTitle {
-            left: 35%;
-        }
-        #model-container{
-            top:35vmin;
-            left:25vmin;
-        }
-        #modelDesc {
-            left: 1vmin;
-        }
-}
-</style>
 
 <head>
-    <link rel="icon" href = "favicon.png">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>welcome to my face</title>
+    <link href='https://fonts.googleapis.com/css?family=Metal Mania' rel='stylesheet'>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        #the-bro-box {
+            position: absolute;
+            top: 2%;
+            left: 35%;
+            right: 30%;
+            color: black;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            outline: 2px solid black;
+            width: 30%;
+            text-align: center;
+            background-position-y: 100px;
+            font-size: 300%;
+        }
+
+        nav {
+            position: absolute;
+            left: 90%;
+            text-align: center;
+        }
+
+        nav>ul {
+            list-style: none;
+            padding: 0;
+
+            display: inline-block;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            outline: 2px dotted black;
+            left: 90%;
+        }
+
+        nav>ul>li {
+            float: left;
+            width: 150px;
+            height: 65px;
+            line-height: 65px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        ul.menu {
+            position: absolute;
+            top: 100%;
+            left: 0%;
+            width: 100%;
+            padding: 0;
+        }
+
+        ul.menu li {
+            font-size: 200%;
+            opacity: 0;
+            display: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: black;
+        }
+
+        li:hover>ul.menu li{
+            
+            animation-duration: 0.5s;
+            animation-name: slidein;
+            animation-fill-mode: forwards;
+            display: block;
+        }
+        img{
+            display: block;
+            top:0%;
+            left:30%;
+            width: 35%;
+            position: fixed;
+            display: none;
+            
+        }
+
+
+        @keyframes slidein {
+            from {
+                padding-left: 50px;
+                opacity: 0;
+                transform: rotate(90);
+            }
+
+            to {
+                padding-left: 0%;
+                opacity: 1;
+                transform: rotate(0);
+            }
+        }
+
+        #subtext {
+            font-size: 40%;
+        }
+    </style>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href = "favicon.png">
 </head>
 
-<body onresize="resizeModel()">
-    <div id="block1">
-        <div id="letter-container">
-            <div id="letter" onmouseover="letterSink(this)" style="z-index: 5">L</div>
-            <div id="letter" onmouseover="letterSink(this)" style="z-index: 4">A</div>
-            <div id="letter" onmouseover="letterSink(this)" style="z-index: 3">Y</div>
-            <div id="letter" onmouseover="letterSink(this)" style="z-index: 2">E</div>
-            <div id="letter" onmouseover="letterSink(this)" style="z-index: 1">R</div>
-            <div class="spacer" id="letter"> </div>
-            <div id="letter" onmouseover="letterSink(this)" style="z-index: 5">L</div>
-            <div id="letter" onmouseover="letterSink(this)" style="z-index: 4">I</div>
-            <div id="letter" onmouseover="letterSink(this)" style="z-index: 3">N</div>
-            <div id="letter" onmouseover="letterSink(this)" style="z-index: 2">E</div>
-            <div id="letter" onmouseover="letterSink(this)" style="z-index: 1">S</div>
-        </div>
-    
-        <div id="buttons">
-            <div></div>
-            <button id="button1" onclick="changeActive(1)"style = "margin-left: 0%;">projects</button>
-            <button id="button2" onclick="changeActive(2)">about</button>
-            <button id="button3" onclick="changeActive(3)">links</button>
-            <button id="button4" onclick="changeActive(4)">contact</button>
-        </div>
-        <div id="surrounding" class="w3-container">
-            <div class="slide" id="slide1">
-                <div id="model-container"></div>
-                <p id="modelTitle">HORNET
-                    <p id="modelDesc">Character from the game Hollow Knight. Model is made in Blender and fully 3D
-                        printable, files and assembly video are avilable below. <br>
-                        <a id="modelLink" href="https://www.youtube.com/watch?v=DDRNva_G8xk">WATCH VIDEO</a><a
-                            id="modelLink" href="https://www.myminifactory.com/object/3d-print-93528">DOWNLOAD FILES</a>
-                    </p>
-                </p>
-            </div>
-            <div class="slide" id="slide2">
-                <p id="desc">Hey there! I'm Nathan, and this is the website for my YouTube channel, Layer Lines.<br><br>I mainly work with Blender creating models from movies and video games, most of which end up 3D printed. You can find all my videos on my channel, or head over to my profile on MyMiniFactory to download and print my previous projects.<br><br>
-                    Thanks for stopping by!
-                </p>
-            </div>
-            <div class="slide" id="slide3" style="text-align: center;">
-                <a href="https://www.myminifactory.com/users/layerlines"><img src="img/mmf_logo.png" id="logo"></a>
-                
-                <a href="https://www.youtube.com/channel/UCB2hedx09-O5u0tg-WwUTdw"><img src="img/youtube_logo.png" id="logo" style="margin-left:20vw;"></a>
-            </div>
-            <div class="slide" id="slide4">
-                <p id="desc">You can contact me at <br><a href="mailto:LayerLinesYT@gmail.com" style="text-decoration-line: none;">LayerLinesYT@gmail.com</a><br><br>or message me on any other platform I use: <br><a href="https://twitter.com/LayerLinesYT">Twitter</a></p>
-            </div> 
-        </div>
-    </div>
-    
+<body>
+    <img id="explosion" src="explosionFaster.gif">
+    <h1 id="the-bro-box" class="txt">Welcome to my face
+        <!-- <p id="subtext" class="txt">you dumb bitch</p> -->
+    </h1>
+    <nav>
+        <ul>
+            <li class="txt">things
+                <ul class="menu">
+                    <li class="txt" onclick = "showEyes(this)" style="animation-delay: 0.0s;">eyes</li>
+                    <li class="txt" onclick = "gunDispense(this)" style="animation-delay: 0.1s;">gun</li>
+                    <li class="txt" onclick = "willScream(this)" style="animation-delay: 0.2s;">scream</li>
+                    <li class="txt" onclick = "skullToggle(this)" style="animation-delay: 0.3s;">kill</li>
+                    <li class="txt" onclick = "showDemon(this)" style="animation-delay: 0.4s;">hell</li>
+                    <li class="txt" onclick = "doCool(this)" style="animation-delay: 0.5s;">cool</li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
     <script src="js/three.js"></script>
     <script src="js/GLTFLoader.js"></script>
-    <script src="js/jquery-3.4.1.js"></script>
-    <script src="js/jquery.textfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
     <script>
-        jj = navigator.app
-        var userletters = false;
-        window.onload=function(){setTimeout(function(){var element = document.getElementById("letterDelay"); element.parentNode.removeChild(element);userletters=true;},2000)};
-        function letterSink(element){
-            if(userletters == true){
-                element.className = "active";
-                setTimeout(function(){element.className = "inactive"},500);
-            }
-        }
-        var activeSlide = 0;
-        function changeActive(num){
-            if(activeSlide!=0)
-                document.getElementById("slide"+activeSlide).style.left = "200%";
-            document.getElementById("slide"+num).style.left = "5%";
-            activeSlide = num;
-            for(i=1;i<=4;i++)
-                if(i==activeSlide)
-                    document.getElementById("button"+activeSlide).className = "active";
-                else
-                    document.getElementById("button"+i).className = "inactive";
-        }
-        var modelViewX = 600;
-        var modelViewY = 650;
+        
+        //initialize
         var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(30, modelViewX/modelViewY, 0.1, 1000);
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor( 0xffffff, 1);
+        document.body.appendChild(renderer.domElement);
         var loader = new THREE.GLTFLoader();
-        resizeModel();
-        document.getElementById("model-container").appendChild(renderer.domElement);
-        var hornetModel;
-        var light = new THREE.PointLight(0xFFFFFF, 0.6, 500);
-        light.position.x = 10;
-        scene.add(light);
-        var light = new THREE.PointLight(0xFFFFFF, 0.6, 500);
-        light.position.x = -10;
-        scene.add(light);
-        loader.load('misc/hornet_model.glb',
-        function(model){
-            hornetModel = model.scene.children[0];
-            console.log(model.scene.children[0]);
-            console.log(hornetModel);
-            scene.add(hornetModel);console.log("loaded");
-            hornetModel.position.z = -61;
-            hornetModel.position.y = -2;
-            hornetModel.material = new THREE.MeshPhysicalMaterial({clearCoat:1, roughness: 0.7,metalness:0.83,color: 0x777777 , morphTargets: true});//base
-            hornetModel.children[0].material = new THREE.MeshPhysicalMaterial({ roughness: 0.68,metalness:1,color: 0x1e1e1e , morphTargets: true });//body
-            hornetModel.children[1].material = new THREE.MeshPhysicalMaterial({ roughness: 1,metalness:0,color: 0x840b0b , morphTargets: true });//cloak
-            hornetModel.children[2].material = new THREE.MeshPhysicalMaterial({ roughness: 1,metalness:0,color: 0xffffff , morphTargets: true });//head
-            hornetModel.children[3].material = new THREE.MeshPhysicalMaterial({ roughness: 0.68,metalness:1,color: 0x1e1e1e , morphTargets: true });//eyes
-            hornetModel.children[4].material = new THREE.MeshPhysicalMaterial({ roughness: 0.44,metalness:0.83,color: 0xa0a0a0 , morphTargets: true});//nail
-            }, undefined, function (error) { console.log("yeah" + error); });
+        //models
+        var face;
+        var animBox;
+        var eyeL;
+        var eyeR;
+        var skull;
+        var horns;
+        var glasses;
+        var gun;
+        var pentagram;
+        var mouth;
+        //animation tools
+        var faceMixer;
+        var mixer;
+        var pentagramMixer;
+        var hellClip;
+        var hellClip2;
+        var clip;
+        var gunClip;
+        var scream;
+        var skullScream;
+        var clock = new THREE.Clock();
+        var gunOut = false;
+        var canScream = false;
+        //audio
+        var ping = new Audio("ping.mp3");
+        var click = new Audio("click.mp3");
+        var click2 = new Audio("click2.mp3");
+        var homerScream = new Audio ("scream2.wav");
+        var yuh = new Audio("nDeath.wav");
+        var huy = new Audio("nDeathRev.wav");
+        var bombNoise = new Audio("explode.wav")
+        
+        yuh.volume = huy.volume = bombNoise.volume = 0.6;
 
-            //mouse drag script↓
+        
+        loader.load('untitled.glb', loadIt, undefined, function (error) { console.error(error); });
+        function loadIt(model) {
+            face = model.scene.children[0];
+            glasses = face.children[2];
+            horns = face.children[0];
+            skull = face.children[1];
+            eyeL = face.children[4];
+            eyeR = face.children[3];
+            mouth = face.children[5];
+            mouth.material = new THREE.MeshBasicMaterial({color:'black'});
+            face.material = new THREE.MeshLambertMaterial({ color: 'grey', morphTargets: true, side:THREE.DoubleSide})
+            eyeL.material = new THREE.MeshLambertMaterial({ color: 'white' });
+            eyeR.material = new THREE.MeshLambertMaterial({ color: 'white' });
+            skull.material = new THREE.MeshLambertMaterial({ color: 'white' , morphTargets: true });
+            eyeL.children[0].material = new THREE.MeshBasicMaterial({ color: 'black' });
+            eyeR.children[0].material = new THREE.MeshBasicMaterial({ color: 'black' });
+            glasses.material = new THREE.MeshPhysicalMaterial({color: 'blue'})
+            glasses.children[0].material = new THREE.MeshPhysicalMaterial({color: 'black',transparent:true,opacity:0.9})
+            eyeL.visible = false;
+            eyeR.visible = false;
+            skull.visible = false;
+            horns.visible = false;
+            glasses.visible = false;
+            scene.add(face);
+            faceMixer = new THREE.AnimationMixer(face);
+            scream = faceMixer.clipAction(model.animations[0]);
+            scream.setLoop(THREE.LoopOnce);
+            scream.timeScale = 2;
+            skullScream = faceMixer.clipAction(model.animations[1]);
+            skullScream.setLoop(THREE.LoopOnce);
+            skullScream.timeScale = 2;
+        }
 
-            var drag = false;
-            var frameCountdown = 0; //defines number of frames until model view resets
-            var lastOffset = {x:0,y:0};
-
-            renderer.domElement.addEventListener('mousedown',function(e){drag = true; frameCountdown=120;document.getElementById("modelDesc").style.zIndex= -1;document.getElementById("model-container").style.outline = "1px dotted black";});
+        loader.load('pentagram.glb', loadIt666, undefined, function (error) { console.error(error); });
+        function loadIt666(model){
+            pentagram = model.scene.children[0];
+            scene.add(pentagram);
+            pentagram.visible=false;
+            pentagram.children[0].material = new THREE.MeshBasicMaterial({ color: 'red', morphTargets: true ,transparent:true,opacity:0.5, side:THREE.DoubleSide});
+            pentagram.material = new THREE.MeshLambertMaterial({color:'red',emissive:'red'});
+            pentagramMixer = new THREE.AnimationMixer(pentagram);
+            hellClip = pentagramMixer.clipAction(model.animations[0]).setLoop(THREE.LoopPingPong,2);
+            hellClip2 = pentagramMixer.clipAction(model.animations[1]).setLoop(THREE.LoopPingPong,2);
             
-            renderer.domElement.addEventListener('mousemove',function(e){
-                var rotFactor = {x: e.offsetX-lastOffset.x,     y: e.offsetY-lastOffset.y};
-                if(drag){
-                    var rot = new THREE.Quaternion().setFromEuler(new THREE.Euler(rotFactor.y*(Math.PI/180),rotFactor.x*(Math.PI/180),0,'XYZ'))
-                    hornetModel.quaternion.multiplyQuaternions(rot, hornetModel.quaternion);
-                }
-                lastOffset = {x: e.offsetX,     y: e.offsetY};
-            });
+        }
 
-            document.addEventListener('mouseup',function(){drag=false;document.getElementById("modelDesc").style.zIndex= 0;document.getElementById("model-container").style.outline = "none";})
-            function modelUpdate(){
-                if(drag==false){
-                    if(frameCountdown>0)
-                        frameCountdown--;
-                    else{
-                        hornetModel.rotation.y += 0.01;
-                        if(hornetModel.rotation.x != 0)
-                            hornetModel.rotation.x = (hornetModel.rotation.x - hornetModel.rotation.x % 0.01)-hornetModel.rotation.x/50;
-                        if(hornetModel.rotation.z != 0)
-                            hornetModel.rotation.z = (hornetModel.rotation.z - hornetModel.rotation.z % 0.01)-hornetModel.rotation.z/50;
-                    }
-                }
+        loader.load('gun_hole.glb', loadItAnim, undefined, function (error) { console.error(error); });
+        function loadItAnim(moddele) {
+            animBox = moddele.scene.children[0];
+            animBox.children[0].material = new THREE.MeshBasicMaterial({ color: 'white', morphTargets: true });
+            animBox.children[1].material = new THREE.MeshPhysicalMaterial({color: 0x323232,metalness:1})
+            animBox.position.x = 7.2;
+            animBox.position.z = 1;
+            animBox.position.y = -4;
+            //animBox.rotation.y = -180;
+            scene.add(animBox);
+            mixer = new THREE.AnimationMixer(animBox);
+            clip = mixer.clipAction(moddele.animations[0]);
+            clip.setLoop(THREE.LoopOnce);
+            clip.clampWhenFinished = true;
+            gunClip = mixer.clipAction(moddele.animations[1]);
+            gunClip.setLoop(THREE.LoopOnce);
+            gunClip.clampWhenFinished = true;
+        }
+        function skullToggle(e){
+            if(!skull.visible)e.style.color = "lightgrey";else e.style.color = "black";
+            if(skull.visible){
+                click2.play();
+                document.getElementById("explosion").setAttribute('src',"")
+                document.getElementById("explosion").style.display = "none";
+                mouth.visible = true;
+                skull.visible = false;
+                face.material.visible = true;
+            }else{
+                bombNoise.play();
+                document.getElementById("explosion").setAttribute('src',"explosionFaster.gif")
+                document.getElementById("explosion").style.display = "block";
+                setTimeout(()=>{document.getElementById("explosion").style.display = "none";},320)
+                mouth.visible= false;
+                skull.visible = true;
+                face.material.visible = false;
             }
-            
-
-            function render() {
-                modelUpdate();
-                renderer.render(scene, camera);
-            }
-
-            function animate() {
-                requestAnimationFrame(animate);
-
-                render();
-
-            }
-            animate();
-
-            function resizeModel(){
-                if(window.innerWidth<window.innerHeight){
-                    renderer.setSize(window.innerWidth/1.5,window.innerWidth*0.72);
-                }
-                else{
-                    renderer.setSize((window.innerHeight*0.9)/1.5,window.innerHeight/1.5);
-                }
+        }
+        function showEyes(e) {
+            if(!eyeL.visible)e.style.color = "lightgrey";else e.style.color = "black";
+            eyeL.visible = !eyeL.visible;
+            eyeR.visible = !eyeR.visible;
+            ping.play();
+        }
+        function gunDispense(e) {
+            if (gunOut == false) {
+                e.style.color = "lightgrey";
+                clip.reset();
+                clip.play();
+                gunClip.reset();
+                gunClip.play();
+                gunOut = true;
+                //play sound after 900 milliseconds
+                setTimeout(function(){new Audio("gunfall.mp3").play();},900)
                 
             }
+        }
+        function showDemon(e){
+            if(!horns.visible)e.style.color = "lightgrey";else e.style.color = "black";
+            var elementz = document.getElementsByClassName("txt");
+            if(!horns.visible){
+                
+                for (i = 0; i < elementz.length; i++) {
+                        
+                        elementz[i].style.fontFamily = "Metal Mania";
+                    }
+                yuh.play();
+                hellClip.reset();
+                hellClip.play();
+                hellClip2.reset();
+                hellClip2.play();
+                setTimeout(()=>{hellClip.paused = true;hellClip2.paused = true},1200)
+                renderer.setClearColor( 0x6e4646, 1);
+                animBox.children[0].material.color.set(renderer.getClearColor());
+                horns.visible = true;
+                pentagram.visible=true;
+                homerScream = new Audio ("demonScream.wav");
+                face.material.color.set('red');
+                eyeL.material.color.set('black');
+                eyeR.material.color.set('black');
+                skull.material.color.set('grey');
+                eyeL.children[0].material.color.set('red');
+                eyeR.children[0].material.color.set('red');
+            }else{
+                huy.play();
+                hellClip.paused = false;hellClip2.paused = false;
+                setTimeout(()=>{
+                    for (i = 0; i < elementz.length; i++) {
+                        if(glasses.visible)
+                            elementz[i].style.fontFamily = "Comic Sans MS";
+                        else
+                            elementz[i].style.fontFamily = "Verdana, Geneva, Tahoma, sans-serif";
+                    }   
+                    renderer.setClearColor( 0xffffff, 1);
+                    animBox.children[0].material.color.set(renderer.getClearColor());
+                    horns.visible = false;
+                    pentagram.visible=false;
+                    homerScream = new Audio ("scream2.wav");
+                    face.material.color.set('grey');
+                    eyeL.material.color.set('white');
+                    eyeR.material.color.set('white');
+                    skull.material.color.set('white');
+                    eyeL.children[0].material.color.set('black');
+                    eyeR.children[0].material.color.set('black');
+                },1000);
+            }
+        }
             
-        </script>
+        function doCool(e) {
+            if(!glasses.visible)e.style.color = "lightgrey";else e.style.color = "black";
+            var elementz = document.getElementsByClassName("txt");
+                if (glasses.visible) {
+                    glasses.visible = false;
+                    if(horns.visible){
+                        for (i = 0; i < elementz.length; i++) {
+                            elementz[i].style.fontFamily = "Metal Mania";
+                        }
+                    }else{
+                        for (i = 0; i < elementz.length; i++) {
+                            elementz[i].style.fontFamily = "Verdana, Geneva, Tahoma, sans-serif";
+                        }
+                    }
+                }else{
+                    glasses.visible = true;
+                    for (i = 0; i < elementz.length; i++) {
+                        
+                        elementz[i].style.fontFamily = "Comic Sans MS";
+                    }
+                }
+        }
+        function willScream(e){
+            if(!canScream)e.style.color = "lightgrey";else e.style.color = "black";
+            canScream = !canScream;
+            scream.reset();
+            scream.play();
+            skullScream.reset();
+            skullScream.play();
+            homerScream.play();
+        }
+        function doScream(){
+            if(homerScream.ended || homerScream.paused){
+                var rate = (Math.random()*2.7)+0.3
+                scream.reset();
+                scream.timeScale = rate*2;
+                scream.play();
+                skullScream.reset();
+                skullScream.timeScale = rate*2;
+                skullScream.play();
+                homerScream.playbackRate = rate;
+                homerScream.play();
+            }
+        }
+        var loaderr = new THREE.TextureLoader();
+        var shadow = new THREE.MeshLambertMaterial({ map: loaderr.load('shadow.png'), depthTest: false, transparent: true });
+        var plane = new THREE.CubeGeometry(14, 0.0001, 14);
+        var fullShadow = new THREE.Mesh(plane, shadow);
+        var light = new THREE.PointLight(0xFFFFFF, 1, 500);
+        light.position.set(20, 5, 10);
+        var light2 = new THREE.PointLight(0xFFFFFF, 1, 500);
+        light2.position.set(-20, 5, 10);
+        light.rotation.set(180, 0, 0);
+        fullShadow.position.y = -4;
+        fullShadow.renderOrder = 0;
+        scene.add(light);
+        scene.add(light2);
+        scene.add(fullShadow);
+        camera.position.z = 10;
+        //var pointer = new MouseEvent();
+        document.addEventListener('mousemove', function (e) {
+            var loc = new THREE.Vector3((e.clientX - window.innerWidth / 2), -(e.clientY - window.innerHeight / 2), 500);
+            face.lookAt(loc);
+            eyeL.lookAt(new THREE.Vector3(loc.x, loc.y, 300));
+            eyeR.lookAt(new THREE.Vector3(loc.x, loc.y, 300));
+            //eyeL.rotation.y = face.rotation.y  - 19.1;
+            //eyeR.rotation.y = face.rotation.y  + 19.1;
+            document.getElementById("subtext").innerHTML =  document.getSelection().toString();
+        });
+        document.addEventListener('keydown', charHandler);
+        function charHandler(e) {
+            if(!horns.visible){
+                if (e.key == 'p')
+                    face.material.color.set(0xFF7B92);
+                if (e.key == 'b')
+                    face.material.color.set(0x0080FF);
+                if (e.key == 'g')
+                    face.material.color.set('green');
+            }
+            // if (e.key == 'e') {
+            //     clip.reset();
+            //     clip.play();
+            //     gunClip.reset();
+            //     gunClip.play();
+            //     scream.reset();
+            // }
+            if (e.key == 'r')
+                mixer.timeScale *= -1;
+            if (e.key == 's') {
+                var msg = new SpeechSynthesisUtterance("you have found the secret cringe. ");
+                msg.pitch = -5;
+                msg.voice = window.speechSynthesis.getVoices()[10];
+                window.speechSynthesis.speak(msg);
+                console.log(speechSynthesis.getVoices());
+            }
+            if (e.key == 'h')
+                console.log(scream.isRunning());
+            new Audio("http://www.realmofdarkness.net/audio/sfx/windows/xp/start-2.mp3").play();
+            
+        }
+        document.addEventListener('click', function () { click.play(); if (canScream) doScream();}, true)
+        var up = true;
+        function float() {
+            if (face.position.y > 0.3)
+                up = false;
+
+            if (face.position.y < -0.3)
+                up = true;
+
+            if (up == true) {
+                face.position.y += ((0.35 - Math.abs(face.position.y)) / 50);
+                fullShadow.scale.z = fullShadow.scale.x += ((0.35 - Math.abs(face.position.y)) / 100);
+                //fullShadow.scale.z +=((0.35-Math.abs(face.position.y))/100);
+            }
+
+            else {
+                face.position.y -= ((0.35 - Math.abs(face.position.y)) / 50);
+                fullShadow.scale.z = fullShadow.scale.x -= ((0.35 - Math.abs(face.position.y)) / 100);
+                //fullShadow.scale.z -=((0.35-Math.abs(face.position.y))/100);
+            }
+            pentagram.rotation.y += 0.005;
+        }
+        function animate() {
+            requestAnimationFrame(animate);
+            var delta = clock.getDelta();
+            if (mixer != null) {
+                mixer.update(delta);
+            }
+            if (faceMixer != null) {
+                faceMixer.update(delta);
+            }
+            if(pentagramMixer != null){
+                pentagramMixer.update(delta);
+            }
+            float();
+            //cube.scale.x += Math.random()*(0.1+0.1)-0.1;
+            renderer.render(scene, camera);
+        }
+
+        animate();
+        this.tl = new TimelineMax().delay(.3);
+        TweenMax.to(face.scale, 3, { x: 3, ease: Expo.easeOut }, 0.2);
+    </script>
 </body>
 
 </html>
